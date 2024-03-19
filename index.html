@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Basic -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <meta charset="UTF-8" />
+    <meta name="theme-color" content="#09f" />
+    <meta name="description"
+      content="I hate writing assignments so I made this tool that converts text to an image that looks like handwriting. You can copy paste text content into the textbox and click generate image button to generate image. Text to Handwriting" />
+    <meta name="keywords"
+      content="text to handwriting, text-to-handwrting, Nakshatra text to handwriting, convert text to image, write assignment online" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="author" content="Nakshatra Ranjan Saha" />
+    <meta name="copyright" content="Nakshatra Ranjan Saha" />
+    <meta name="robots" content="follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Text to Handwriting" />
+    <meta property="og:url" content="https://oceanofanythingofficial.github.io/text-to-handwriting" />
+    <meta property="og:description"
+      content="I hate writing assignments so I made this tool that converts text to an image that looks like handwriting. You can copy paste text content into the textbox and click generate image button to generate image. Text to Handwriting" />
+    <meta property="og:site_name" content="Text to Handwriting" />
+    <meta property="og:image:width" content="600" />
+    <meta property="og:image:height" content="337" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@OceanAnything" />
+
+    <title>Text to Handwriting</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png" />
+
+    <!-- PWA Migration -->
+    <link rel="manifest" href="manifest.webmanifest" />
+
+    <!-- Load Fonts -->
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Homemade+Apple|Roboto|Caveat|Liu+Jian+Mao+Cao&display=swap" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/utils.css" />
+  </head>
+
+  <body>
+    <main>
+      <button aria-label="Activate Dark Mode" title="Toggle Dark Mode" aria-pressed="false" onclick="toggleTheme(this)"
+        class="dark-mode-toggle">
+        <span class="sun">
+          <img alt="sun icon that represents light mode" width="35px" src="images/sun.svg" /></span>
+        <span class="moon"><img alt="moon icon to represent dark mode " width="25px" src="images/moon.svg" /></span>
+      </button>
+      <h1>Text to Handwriting</h1>
+      <section class="generate-image-section">
+        <br /><br />
+        <form id="generate-image-form">
+          <!-- Generate Image Section -->
+          <div class="display-flex output-grid responsive-flex">
+            <div class="flex-1 page-container-super">
+              <div>
+                <h2 style="margin-top: 0px;">Input</h2>
+                <label class="block" for="note">Type/Paste text here</label>
+              </div>
+
+              <div class="flex-1 page-container">
+                <div class="page-a bg-image-resized margined lines">
+                  <!-- this line has bg image in page -->
+                  <div contenteditable="true" class="top-margin"></div>
+                  <div class="display-flex left-margin-and-content">
+                    <div contenteditable="true" class="left-margin"></div>
+                    <div class="paper-content" id="note" contenteditable="true">
+                      Quantum mechanics is a fundamental theory in physics that provides a description of the physical
+                      properties of nature at the scale of atoms and subatomic particles. It is the foundation of all
+                      quantum physics including quantum chemistry, quantum field theory, quantum technology, and quantum
+                      information science. Classical physics, the description of physics that existed before the
+                      formulation of the theory of relativity and of quantum mechanics, describes many aspects of nature
+                      at an ordinary (macroscopic) scale, while quantum mechanics explains the aspects of nature at
+                      small (atomic and subatomic) scales. For example, the angular momentum of an electron bound to an
+                      atom or molecule is quantized. In contrast, the angular momentum of an object in classical
+                      mechanics can take on any value of a continuous range. The quantum theory of the period between
+                      Planck's discovery of the quantum (1900) and the advent of a consistent theory of quantum
+                      mechanics in the mid-1920s is often referred to as the old quantum theory.
+                    </div>
+                  </div>
+                  <div class="overlay"></div>
+                </div>
+                <br />
+              </div>
+
+              <div>
+                <button id="draw-diagram-button" type="button" style="font-size: 0.9rem; margin-top: 5px;"
+                  class="draw-button">
+                  Draw / Add Drawing
+                </button>
+              </div>
+            </div>
+
+            <div class="customization-col">
+              <!-- Handwriting Font -->
+              <div style="padding: 5px 0px 5px 0px;">
+                <b>Customizations</b>
+                <p style="font-size: 0.8rem;">
+                  <em>Note: Few changes may reflect only in the generated image
+                    and not in the preview</em>
+                </p>
+              </div>
+              <fieldset>
+                <legend>Handwriting Options</legend>
+
+                <div class="category-grid">
+                  <div>
+                    <label class="block" for="handwriting-font">Handwriting Font</label>
+
+                    <select id="handwriting-font">
+
+                      <option selected style="font-family: 'Homemade Apple';" value="'Homemade Apple', cursive">
+                        Homemade Apple
+                      </option>
+                      <option value="Hindi_Type" style="font-family: Hindi_Type;">कृति देव</option>
+                      <option value="QEAntonyLark" style="font-family: QEAntonyLark;">Antony Lark</option>
+                      <option value="QEBEV" style="font-family: QEBEV;">BEV</option>
+                      <option value="QEBradenHill" style="font-family: QEBradenHill;">Braden Hill</option>
+                      <option value="QECarolineMutiboko" style="font-family: QECarolineMutiboko;">Caroline Mutiboko
+                      </option>
+                      <option value="QECursiveVersion" style="font-family: QECursiveVersion;">Cursive Version</option>
+                      <option value="QEDSFont" style="font-family: QEDSFont;">DS Font</option>
+                      <option value="QEDaveMergens" style="font-family: QEDaveMergens;">Dave Mergens</option>
+                      <option value="QEDavidReid" style="font-family: QEDavidReid;">David Reid</option>
+                      <option value="QEDavidReidCAP" style="font-family: QEDavidReidCAP;">David Reid CAP</option>
+                      <option value="QEDonaldRoss" style="font-family: QEDonaldRoss;">Donald Ross</option>
+                      <option value="QEGHHughes" style="font-family: QEGHHughes;">GH Hughes</option>
+                      <option value="QEGarrettWMoretz" style="font-family: QEGarrettWMoretz;">Garrett W Moretz</option>
+                      <option value="QEHerbertCooper" style="font-family: QEHerbertCooper;">Herbert Cooper</option>
+                      <option value="QEJER" style="font-family: QEJER;">JER</option>
+                      <option value="QEJeffDungan" style="font-family: QEJeffDungan;">Jeff Dungan</option>
+                      <option value="QEJohnCaplin" style="font-family: QEJohnCaplin;">John Caplin</option>
+                      <option value="QEJohnWilliams" style="font-family: QEJohnWilliams;">John Williams</option>
+                      <option value="QEJulianDean" style="font-family: QEJulianDean;">Julian Dean</option>
+                      <option value="QEKevinKnowles" style="font-family: QEKevinKnowles;">Kevin Knowles</option>
+                      <option value="QEKevinShirley" style="font-family: QEKevinShirley;">Kevin Shirley</option>
+                      <option value="QEKunjarScript" style="font-family: QEKunjarScript;">Kunjar Script</option>
+                      <option value="QEMamasAndPapas" style="font-family: QEMamasAndPapas;">Mamas And Papas</option>
+                      <option value="QEPamRosenberry" style="font-family: QEPamRosenberry;">Pam Rosenberry</option>
+                      <option value="QEPhilipBean" style="font-family: QEPhilipBean;">Philip Bean</option>
+                      <option value="QEPhillips" style="font-family: QEPhillips;">Phillips</option>
+                      <option value="QEPrintVersion" style="font-family: QEPrintVersion;">Print Version</option>
+                      <option value="QERoystonSuch" style="font-family: QERoystonSuch;">Royston Such</option>
+                      <option value="QERoystonSuchCAP" style="font-family: QERoystonSuchCAP;">Royston Such CAP</option>
+                      <option value="QERufus" style="font-family: QERufus;">Rufus</option>
+                      <option value="QERuthStafford" style="font-family: QERuthStafford;">Ruth Stafford</option>
+                      <option value="QESamRoberts" style="font-family: QESamRoberts;">Sam Roberts</option>
+                      <option value="QESamRoberts2" style="font-family: QESamRoberts2;">Sam Roberts 2</option>
+                      <option value="QEScottWilliams" style="font-family: QEScottWilliams;">Scott Williams</option>
+                      <option value="QETonyFlores" style="font-family: QETonyFlores;">Tony Flores</option>
+                      <option value="QEVRead" style="font-family: QEVRead;">VRead</option>
+                      <option value="QEVickyCaulfield" style="font-family: QEVickyCaulfield;">Vicky Caulfield</option>
+                      <option value="QEgeeKzoid" style="font-family: QEgeeKzoid;">gee Kzoid</option>
+
+                      <option style="font-family: 'Caveat', cursive; font-size: 13pt;" value="'Caveat', cursive">
+                        Caveat
+                      </option>
+                      <option style="
+                          font-family: 'Liu Jian Mao Cao';
+                          font-size: 13pt;
+                        " value="'Liu Jian Mao Cao', cursive">
+                        Liu Jian Mao Cao
+                      </option>
+                    </select>
+
+                  </div>
+                  <div class="upload-handwriting-container">
+                    <label class="block" for="font-file">Upload your handwriting font &nbsp;
+                      <a style="font-size: 1.1rem;" title="How to add your own handwriting"
+                        href="#how-to-add-handwriting">
+                        &#9432;
+                      </a>
+                    </label>
+                    <!-- <input accept=".ttf, .otf" type="file" id="font-file" /> -->
+                    <label for="font-file" class="custom-file-upload">
+                      <span id="font-file-name-span">Select Font File</span>
+                      <input accept=".ttf, .otf" type="file" id="font-file" style="display:none;" />
+                    </label>
+
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- Pen ink color, Font size, Vertical position text, Word Spacing -->
+              <fieldset>
+                <legend>Page & Ink Options</legend>
+
+                <div class="category-grid">
+                  <div class="postfix-input" data-postfix="pt">
+                    <label for="font-size">Font Size</label>
+                    <input id="font-size" min="0" step="0.5" value="10" type="number" />
+                  </div>
+                  <div>
+                    <label class="block" for="ink-color">Ink Color</label>
+                    <select id="ink-color">
+                      <option default value="#000f55">Blue</option>
+                      <option value="red">Red</option>
+                      <option value="green">Green</option>
+                      <option value="black">Black</option>
+                      <option value="purple">Purple</option>
+                      <option value="grey">Grey</option>
+                      <option value="yellow">Yellow</option>
+                      <option value="orange">Orange</option>
+                      <option value="brown">Brown</option>
+                      <option value="pink">Pink</option>
+                      <option value="cyan">Cyan</option>
+                      <option value="magenta">Magenta</option>
+                      <option value="lime">Lime</option>
+                      <option value="teal">Teal</option>
+                      <option value="indigo">Indigo</option>
+                      <option value="maroon">Maroon</option>
+                      <option value="navy">Navy</option>
+                      <option value="olive">Olive</option>
+                      <option value="silver">Silver</option>
+                      <option value="white">White</option>
+                      <option value="custom">Custom</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block" for="page-size">Page Size</label>
+                    <select id="page-size">
+                      <option default value="a4">A4 &nbsp;</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block" for="page-effects">Effects</label>
+                    <select id="page-effects">
+                      <option default value="shadows">Shadows</option>
+                      <option value="scanner">Scanner</option>
+                      <option value="no-effect">No Effect</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block" for="resolution">Resolution</label>
+                    <select id="resolution">
+                      <option value="0.8">Very Low</option>
+                      <option value="1">Low</option>
+                      <option selected value="2">Normal</option>
+                      <option value="3">High</option>
+                      <option value="4">Very High</option>
+                    </select>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Spacing Options</legend>
+
+                <div class="category-grid">
+                  <div class="postfix-input" data-postfix="px">
+                    <label for="top-padding">Vertical Position</label>
+                    <input id="top-padding" min="0" value="5" type="number" />
+                  </div>
+                  <div class="postfix-input" data-postfix="px">
+                    <label for="word-spacing">Word Spacing</label>
+                    <input id="word-spacing" min="0" max="100" value="0" type="number" />
+                  </div>
+                  <div class="postfix-input" data-postfix="pt">
+                    <label for="letter-spacing">Letter Spacing</label>
+                    <input id="letter-spacing" min="-5" max="40" value="0" type="number" />
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- Letter spacing, Paper Margin, Paper Lines, Paper Curvature -->
+              <fieldset>
+                <legend>Margin & Line Options</legend>
+
+                <div class="category-grid">
+                  <div>
+                    <label for="paper-margin-toggle">Paper Margin:
+                      <span aria-label="paper margin status" class="status">on</span>
+                    </label>
+                    <label class="switch-toggle outer">
+                      <input aria-checked="true" checked aria-label="Paper Margin Button" id="paper-margin-toggle"
+                        type="checkbox" />
+                      <div></div>
+                    </label>
+                  </div>
+
+                  <div>
+                    <label for="paper-line-toggle">Paper Lines:
+                      <span aria-label="paper line status" class="status">on</span>
+                    </label>
+                    <label class="switch-toggle outer">
+                      <input aria-checked="true" checked aria-label="Paper Line Button" id="paper-line-toggle"
+                        type="checkbox" />
+                      <div></div>
+                    </label>
+                  </div>
+                  <div class="experimental">
+                    <!-- Removed option -->
+                    <div class="upload-paper-container">
+                      <label class="block" for="paper-file">Use Image As Paper</label>
+                      <label for="paper-file" class="custom-file-upload" id="paper-image-uploaded">
+                        <span id="paper-file-name-span">Select Paper Image</span>
+                        <input accept=".jpg, .jpeg, .png, .webp" type="file" id="paper-file" style="display:none;" />
+                      </label>
+                      <a id="remove-paper-bg-button" class="remove-paper-bg-button" style="display:none;">Remove
+                        Paper / Theme</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="container">
+                  <hr>
+                </div>
+                <div class="category-grid">
+                  <div class="postfix-input" data-postfix="px">
+                    <label for="top-margin-size">Top Margin Size</label>
+                    <input id="top-margin-size" max="400" min="0" value="2" type="number">
+                  </div>
+
+                  <div class="postfix-input" data-postfix="px">
+                    <label for="left-margin-size">Left Margin Size</label>
+                    <input id="left-margin-size" max="400" min="0" value="2" type="number">
+                  </div>
+
+                  <div>
+                    <label class="block" for="margin-color">Ink Color</label>
+                    <select id="margin-color">
+                      <option default="" value="black">Black</option>
+                      <option value="pink">Pink</option>
+                      <option value="#000f55">Blue</option>
+                      <option value="red">Red</option>
+                      <option value="green">Green</option>
+                      <option value="purple">Purple</option>
+                      <option value="grey">Grey</option>
+                      <option value="yellow">Yellow</option>
+                      <option value="orange">Orange</option>
+                      <option value="brown">Brown</option>
+                      <option value="cyan">Cyan</option>
+                      <option value="magenta">Magenta</option>
+                      <option value="lime">Lime</option>
+                      <option value="teal">Teal</option>
+                      <option value="indigo">Indigo</option>
+                      <option value="maroon">Maroon</option>
+                      <option value="navy">Navy</option>
+                      <option value="olive">Olive</option>
+                      <option value="silver">Silver</option>
+                      <option value="white">White</option>
+                    </select>
+                  </div>
+                </div>
+
+              </fieldset>
+
+              <!-- GENERATE IMAGE BUTTONS -->
+              <hr style="
+                  border: 0.3px solid var(--elevation-background);
+                  width: 80%;
+                " />
+              <div style="text-align: center; padding: 30px 0px;">
+                <button type="submit" data-testid="generate-image-button"
+                  class="btn btn-outline-primary button generate-image-button">
+                  Generate Image
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <!-- OUTPUT -->
+      <section>
+        <h2 id="output-header">Output</h2>
+        <div id="output" class="output" style="text-align: center;">
+          Click "Generate Image" Button to generate new image.
+        </div>
+        <div style="text-align: center; padding: 30px;">
+          <button class="imp-button" id="download-as-pdf-button">
+            Download All Images as PDF
+          </button>
+          <button class="delete-button" id="delete-all-button">
+            Clear all images
+          </button>
+        </div>
+      </section>
+
+
+      <section class="container paper-themes-gallery">
+        <h2>Paper Themes</h2>
+        <section class="container">
+          <div class="row g-4">
+            <div class="col" id="paper-theme-1">
+              <div class="card custom-card bg-transparent border-primary">
+                <img src="paper-themes/crumped-1.jpg" class="card-img-top bg-transparent" alt="Crumped Page 1">
+                <div class="card-body bg-transparent">
+                  <h5 class="card-title text-center text-primary">Crumped Page 1</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col" id="paper-theme-2">
+              <div class="card custom-card bg-transparent border-primary">
+                <img src="paper-themes/crumped-2.jpg" class="card-img-top bg-transparent" alt="Crumped Page 2">
+                <div class="card-body bg-transparent">
+                  <h5 class="card-title text-center text-primary">Crumped Page 2</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col" id="paper-theme-3">
+              <div class="card custom-card bg-transparent border-primary">
+                <img src="paper-themes/dewdrop.jpg" class="card-img-top bg-transparent" alt="Dewdrop">
+                <div class="card-body bg-transparent">
+                  <h5 class="card-title text-center text-primary">Dewdrop</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col" id="paper-theme-4">
+              <div class="card custom-card bg-transparent border-primary">
+                <img src="paper-themes/flower-tiles.jpg" class="card-img-top bg-transparent" alt="Flower Tiles">
+                <div class="card-body bg-transparent">
+                  <h5 class="card-title text-center text-primary">Flower Tiles</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col" id="paper-theme-5">
+              <div class="card custom-card bg-transparent border-primary">
+                <img src="paper-themes/mistsky.jpg" class="card-img-top bg-transparent" alt="Mist Sky">
+                <div class="card-body bg-transparent">
+                  <h5 class="card-title text-center text-primary">Mist Sky</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col" id="paper-theme-6">
+              <div class="card custom-card bg-transparent border-primary">
+                <img src="paper-themes/old-1.jpg" class="card-img-top bg-transparent" alt="Old Page 1">
+                <div class="card-body bg-transparent">
+                  <h5 class="card-title text-center text-primary">Old Page 1</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col" id="paper-theme-7">
+              <div class="card custom-card bg-transparent border-primary">
+                <img src="paper-themes/old-2.jpg" class="card-img-top bg-transparent" alt="Old page 2">
+                <div class="card-body bg-transparent">
+                  <h5 class="card-title text-center text-primary">Old Page 2</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col" id="paper-theme-8">
+              <div class="card custom-card bg-transparent border-primary">
+                <img src="paper-themes/old-newspaper.jpg" class="card-img-top bg-transparent" alt="Vintage Poster">
+                <div class="card-body bg-transparent">
+                  <h5 class="card-title text-center text-primary">Vintage Poster</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col" id="paper-theme-9">
+              <div class="card custom-card bg-transparent border-primary">
+                <img src="paper-themes/paris.jpg" class="card-img-top bg-transparent" alt="paris">
+                <div class="card-body bg-transparent">
+                  <h5 class="card-title text-center text-primary">Winds Of Paris</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col" id="paper-theme-10">
+              <div class="card custom-card bg-transparent border-primary">
+                <img src="paper-themes/waves.jpg" class="card-img-top bg-transparent" alt="Waves">
+                <div class="card-body bg-transparent">
+                  <h5 class="card-title text-center text-primary">Waves</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+
+
+
+      <section id="faq">
+        <h2>FAQs (Frequently Asked Questions)</h2>
+        <div>
+          <h3>1. How can I add my own Handwriting?</h3>
+          <p>
+            Check out
+            <a href="#how-to-add-handwriting">Guide to add your own Handwriting</a>
+          </p>
+        </div>
+        <div>
+          <h3>2. Where can I get more fonts?</h3>
+          <p>
+            This Tool Has 38+ Handwriting Fonts. You can use any of them. (Source - <a
+              href="https://www.quantumenterprises.co.uk/handwriting-fonts/fontvault.htm">Quantum Enterprises</a>)
+            <br>
+            When you get the font file, you can upload it from the "Upload your handwriting font" button in the
+            customizations section. (follow the <a href="#how-to-add-handwriting">Guide </a>
+            to add your own handwriting for more details)
+          </p>
+        </div>
+        <div>
+          <h3>3. There are gaps between letters in custom fonts</h3>
+          <p>
+            To adjust the gap between letters, you can use the letter spacing and word spacing options in the "Spacing
+            Options" section in the customizations panel. <b>(customizations > Spacing Options > Letter Spacing and Word
+              Spacing)</b>
+          </p>
+        </div>
+        <div>
+          <h3>4. Where can I request for features and report bugs?</h3>
+          <p>
+            Unfortunately you can't. This is a read-only project and there will not be any improvements in the project.
+            However, you can fork the project and make your own improvements.
+          </p>
+        </div>
+        <div>
+          <h3>5. How To Use The Paper Themes?</h3>
+          <p>
+            You just have to click on the desired paper theme and it will be applied to the paper. You can also upload
+            your
+            own theme my clicking on the "Use Image As Paper" button in the "Margin & Line Options" section in the
+            customizations panel and then select the image file.
+          </p>
+        </div>
+      </section>
+
+      <section id="how-to-add-handwriting">
+        <h2>Guide to add your own handwriting and use as a font</h2>
+        <div>
+          <ul>
+            <li>
+              To use your handwriting, you will have to generate font of your
+              handwriting.
+            </li>
+            <li>
+              There are websites like
+              <a target="_blank" rel="noopener noreferrer" href="https://www.calligraphr.com/en/">Calligraphr</a>
+              that let you do that.
+              <br>
+              <ol>
+                <li>First you need to create a minimal template (free accounts onlu)</li>
+                <li>Then you need to download the template pdf</li>
+                <li>Then you need to print the template and fill the template with your handwriting</li>
+                <li>Then you need to scan the filled template and upload it to the website</li>
+                <li>Then you need to download the font file (.ttf)</li>
+                <li>Now you can use the font file in this tool as a font</li>
+              </ol>
+              <br>
+            </li>
+            <li>
+              Once you get .ttf file of your handwriting, upload it from 'Upload
+              your handwriting font' button in customizations sections
+            </li>
+          </ul>
+        </div>
+      </section>
+
+    </main>
+    <footer style="padding: 40px 0px 10px 0px;">
+      Thank you for using Text to Handwriting! You can follow me on
+      <a href="https://www.instagram.com/oceanofanything/" target="_blank">Instagram @oceanofanything</a>
+      <br /><br />Do star the
+      <a href="https://github.com/oceanofanythingofficial/text-to-handwriting">Text-to-Handwriting GitHub Repository</a>
+      and If you're using it for writing assignments, make sure you use it at
+      your own risk and If it fails and your teacher finds this tool, ask them
+      to star my GitHub as well :D <br />
+      <br />byeeee! <br /><br />
+      ~ Nakshatra Ranjan Saha
+    </footer>
+
+    <!-- Fixed Elements -->
+    <section class="draw-container popup-container">
+      <button class="close-button">&times;</button>
+      <div class="display-flex responsive-flex">
+        <canvas id="diagram-canvas" style="background-color: #fff;" height="300px" width="600px"></canvas>
+        <div class="flex-1 buttons-container padding-around">
+          <button id="add-to-paper-button" style="margin-top: 5px; margin-bottom: 5px;">
+            Add to Paper
+          </button>
+          <button id="draw-download-button" style="margin-top: 5px; margin-bottom: 5px;">
+            Download Image
+          </button>
+          <br /><br />
+          <input type="file" id="image-to-add-in-canvas" accept="image/x-png,image/jpeg" hidden="hidden" />
+          <br /><br /><button id="add-new-image-button">Add image</button>
+          <br /><br />
+          <button id="clear-draw-canvas" class="blue-button" style="background-color: #f30; color: #fff;">
+            Clear Canvas
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <script src="js/vendors/html2canvas.min.js" crossorigin="anonymous"></script>
+    <script type="module" src="js/app.mjs"></script>
+    <script defer src="https://unpkg.com/jspdf@^1/dist/jspdf.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+
+</html>
