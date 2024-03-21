@@ -34,3 +34,5 @@ I hate writing assignments so I made this tool that converts text to an image th
 9. Fixed some major & minor bugs
 
 10. New Improved User Interface
+
+11. Added Progresive Web App (PWA) support

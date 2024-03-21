@@ -48,6 +48,21 @@
   </head>
 
   <body>
+    <script>
+      // Service Worker Registration
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("service-worker.js")
+            .then((registration) => {
+              console.log("Service Worker registered:", registration);
+            })
+            .catch((error) => {
+              console.error("Service Worker registration failed:", error);
+            });
+        });
+      }
+    </script>
     <main>
       <button aria-label="Activate Dark Mode" title="Toggle Dark Mode" aria-pressed="false" onclick="toggleTheme(this)"
         class="dark-mode-toggle">
@@ -553,6 +568,39 @@
         </div>
       </section>
 
+      <!-- how to install our app (PWA) -->
+      <section>
+        <h2>How to Install Our App (PWA)</h2>
+        <div>
+          <p>
+            This tool is a PWA (Progressive Web App) and can be installed on your
+            device. Here's how you can install it:
+          </p>
+          <ol>
+            <li>
+              <p>
+                <b>On Desktop:</b> You can install it by clicking on the install
+                button in the address bar of your browser.
+              </p>
+            </li>
+            <li>
+              <p>
+                <b>On Mobile:</b> You can install it by clicking on the install
+                button in the address bar of your browser or by clicking on the
+                "Add to Home Screen" or "Install App" button in the browser menu (three dots).
+              </p>
+            </li>
+            <li>
+              <p>
+                <b>On Mac:</b> You can install it by clicking on the install
+                button in the address bar of your browser or by clicking on the
+                "Add to Home Screen" or "Install App" button in the browser menu (three dots).
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
     </main>
     <footer style="padding: 40px 0px 10px 0px;">
       Thank you for using Text to Handwriting! You can follow me on
@@ -593,6 +641,7 @@
     <script type="module" src="js/app.mjs"></script>
     <script defer src="https://unpkg.com/jspdf@^1/dist/jspdf.min.js"></script>
     <script src="js/script.js"></script>
+
   </body>
 
 </html>

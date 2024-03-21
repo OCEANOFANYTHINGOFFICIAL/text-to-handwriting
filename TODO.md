@@ -10,3 +10,4 @@
 8. Added 404 page
 9. Fixed some major & minor bugs
 10. New Improved User Interface
+11. Added Progresive Web App (PWA) support
